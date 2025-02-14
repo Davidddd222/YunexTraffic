@@ -1,0 +1,53 @@
+# Ignorar node_modules en ambas carpetas (back y front)
+back/node_modules/
+front/node_modules/
+
+# Ignorar archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Ignorar logs y archivos temporales
+*.log
+*.log.*
+
+# Ignorar directorios de construcción (build, dist, etc.)
+dist/
+build/
+tmp/
+
+# Ignorar archivos de configuración específicos de IDEs
+.vscode/
+.idea/
+
+# Ignorar archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar los archivos de dependencias de Yarn (si usas Yarn)
+yarn.lock
+
+# Ignorar archivos de cache de npm o Yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar archivos de paquetes de Docker (si usas Docker)
+*.tar
+*.gz
+*.zip
+
+# Ignorar el directorio de cobertura de pruebas (si usas herramientas de pruebas como Jest)
+coverage/
+
+# Ignorar configuraciones de base de datos locales (si aplica)
+*.sqlite
+*.db
+
+# Ignorar los archivos de configuración de linting si no los quieres versionar
+eslint-config/
+prettier-config/
+
+# Otros archivos específicos que no quieras versionar
+*.swp
+*.swo
