@@ -3,7 +3,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 
-const ReporteDeHora = () => {
+const Lab = () => {
   const reportes = [
     { id: 1, empleado: 'Juan Pérez', horas: 8, fecha: '2025-02-12' },
     { id: 2, empleado: 'Ana López', horas: 7, fecha: '2025-02-11' },
@@ -16,7 +16,7 @@ const ReporteDeHora = () => {
       <div className="header-container">
         <Header />
       </div>
-      <h1 className="text-3xl font-semibold mb-4">Reporte de Hora</h1>
+      <h1 className="text-3xl font-semibold mb-4">Reporte de Horaaaaaaaaaaa</h1>
       <p className="mb-4">
         Aquí podrás ver todos los reportes de horas generados.
       </p>
@@ -27,7 +27,7 @@ const ReporteDeHora = () => {
           <thead>
             <tr>
               <th className="px-4 py-2 border-b">ID</th>
-              <th className="px-4 py-2 border-b">Empleado</th>
+              <th className="px-4 py-2 border-b">Empleabdo</th>
               <th className="px-4 py-2 border-b">Horas</th>
               <th className="px-4 py-2 border-b">Fecha</th>
             </tr>
@@ -48,4 +48,4 @@ const ReporteDeHora = () => {
   );
 };
 
-export default ReporteDeHora;
+export default Lab;
