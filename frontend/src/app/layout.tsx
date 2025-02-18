@@ -6,8 +6,10 @@ import {
   SignInButton,
   SignedIn,
   SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+  UserButton,
+} from "@clerk/nextjs";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +35,20 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          
-          {children}
+          <SidebarProvider>
+            {/* Sidebar */}
+            <AppSidebar />
+
+            <main>
+              {/* Esto controla el trigger de la barra lateral */}
+              <SidebarTrigger />
+
+              {/* Los contenidos de las páginas que se inyectan */}
+              {children}
+            </main>
+          </SidebarProvider>
         </body>
       </html>
     </ClerkProvider>
   );
 }
- 
