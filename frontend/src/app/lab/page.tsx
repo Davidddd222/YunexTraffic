@@ -1,5 +1,3 @@
-// src/app/reporte-de-hora/page.tsx
-
 import React from 'react';
 import Header from '@/components/Header';
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
@@ -20,24 +18,15 @@ const Lab = () => {
         <Header />
       </div>
 
-      <SidebarProvider>
-        <div className="flex">
-          {/* Sidebar solo en esta página */}
-          <AppSidebar />
+      
 
-          <div className="flex-1">
-            {/* Agregar SidebarTrigger aquí para que el botón sea visible */}
-            <SidebarTrigger />
-
-            <h1 className="text-3xl font-semibold mb-4 text-end">Lab</h1>
-            <p className="mb-4">
+            <h1 className="text-3xl font-semibold mb-4 text-center">Lab</h1>
+            <p className="mb-4 text-center">
               Aquí podrás ver todos los reportes de horas generados.
             </p>
 
             
-          </div>
-        </div>
-      </SidebarProvider>
+          
     </>
   );
 };

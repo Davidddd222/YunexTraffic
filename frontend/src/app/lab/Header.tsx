@@ -75,7 +75,7 @@ const Header = () => {
             <RiNotification2Line 
               className="text-black h-6 w-7 cursor-pointer hover:text-gray-300 transition-colors duration-300"
             />
-            <SidebarTrigger/>
+            
           </div>
         </div>
       </header>
