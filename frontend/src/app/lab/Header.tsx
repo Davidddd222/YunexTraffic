@@ -4,12 +4,13 @@ import Image from 'next/image';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { RiNotification2Line } from "react-icons/ri";
 import { Button } from "@/components/ui/button";  // Importar el botón
+import { SidebarTrigger } from "@/components/ui/sidebar"; // Asegúrate de que SidebarTrigger está importado
 
 const Header = () => {
   return (
     <div className="container mx-auto">
-      <header className="w-full flex">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 w-full">
+      <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 w-full py-4">
           {/* Logo */}
           <div className="relative w-[100px] h-[100px] flex items-center">
             <Image
@@ -62,7 +63,6 @@ const Header = () => {
               </ul>
             </nav>
 
-
           {/* Bloque de autenticación */}
           <div className="text-black flex gap-4 items-center">
             <SignedOut>
@@ -75,6 +75,7 @@ const Header = () => {
             <RiNotification2Line 
               className="text-black h-6 w-7 cursor-pointer hover:text-gray-300 transition-colors duration-300"
             />
+            <SidebarTrigger/>
           </div>
         </div>
       </header>

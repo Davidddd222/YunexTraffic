@@ -2,7 +2,7 @@ import { Calendar, Home, Inbox, Search, Settings, FlaskConical, CalendarClock } 
 import { TbCarCrane } from 'react-icons/tb';
 import { LiaStoreAltSolid } from "react-icons/lia";
 import { IoDocumentsOutline } from "react-icons/io5";
-
+import Image from 'next/image';
 
 import {
   Sidebar,
@@ -19,56 +19,26 @@ import {
 
 // Menu items.
 const items = [
-  {
-    title: "Inicio",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Reporte de hora",
-    url: "#",
-    icon: CalendarClock,
-  },
-  {
-    title: "Laboratorio",
-    url: "#",
-    icon: FlaskConical,
-  },
-  {
-    title: "EHS",
-    url: "#",
-    icon: IoDocumentsOutline,
-  },
-  {
-    title: "Almacen",
-    url: "#",
-    icon: LiaStoreAltSolid,
-  },
-  {
-    title: "Vehiculos",
-    url: "#",
-    icon: TbCarCrane,
-  },
-  {
-    title: "Administrador",
-    url: "#",
-    icon: Settings,
-  },
+  { title: "Inicio", url: "/lab", icon: Home },
+  { title: "Reparaciones", url: "/lab/reparaciones", icon: CalendarClock },
+  { title: "Balance", url: "/lab/balance", icon: FlaskConical },
+  { title: "General", url: "/lab/general", icon: IoDocumentsOutline },
+  { title: "Ensamble", url: "/lab/ensamble", icon: LiaStoreAltSolid },
 ];
 
 export function AppSidebar() {
   return (
-    <Sidebar>
-      <SidebarContent>
+    <Sidebar className="fixed left-0 top-[100px] w-[200px] h-[calc(100vh-64px)] bg-gray-100 shadow-lg">
+      <SidebarContent >
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Laboratorio</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
+                    <a href={item.url} className="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded">
+                      <item.icon className="w-5 h-5" />
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
@@ -79,5 +49,5 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }

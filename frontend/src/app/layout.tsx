@@ -1,3 +1,5 @@
+
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -32,23 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>
-          <SidebarProvider>
-            {/* Sidebar */}
-            <AppSidebar />
 
+      <ClerkProvider>
+        <html lang="en">
+          <body>
             <main>
-              {/* Esto controla el trigger de la barra lateral */}
-              <SidebarTrigger />
-
-              {/* Los contenidos de las páginas que se inyectan */}
-              {children}
+              {children} {/* Aquí se inyecta el contenido de cada página */}
             </main>
-          </SidebarProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+          </body>
+        </html>
+      </ClerkProvider>
+
   );
 }

@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Header from '@/components/Header';
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar"; // Asegúrate de que AppSidebar está importado
 
 const Lab = () => {
   const reportes = [
@@ -11,40 +13,32 @@ const Lab = () => {
   ];
 
   return (
-    <div className="">
-      {/* Contenedor aislado para el Header */}
-      <div className="header-container">
+    <>
+
+    {/* Header afuera del SidebarProvider */}
+      <div className="">
         <Header />
       </div>
-      <h1 className="text-3xl font-semibold mb-4">Reporte de Horaaaaaaaaaaa</h1>
-      <p className="mb-4">
-        Aquí podrás ver todos los reportes de horas generados.
-      </p>
 
-      {/* Tabla de reportes */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 border-b">ID</th>
-              <th className="px-4 py-2 border-b">Empleabdo</th>
-              <th className="px-4 py-2 border-b">Horas</th>
-              <th className="px-4 py-2 border-b">Fecha</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reportes.map((reporte) => (
-              <tr key={reporte.id}>
-                <td className="px-4 py-2 border-b">{reporte.id}</td>
-                <td className="px-4 py-2 border-b">{reporte.empleado}</td>
-                <td className="px-4 py-2 border-b">{reporte.horas}</td>
-                <td className="px-4 py-2 border-b">{reporte.fecha}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <SidebarProvider>
+        <div className="flex">
+          {/* Sidebar solo en esta página */}
+          <AppSidebar />
+
+          <div className="flex-1">
+            {/* Agregar SidebarTrigger aquí para que el botón sea visible */}
+            <SidebarTrigger />
+
+            <h1 className="text-3xl font-semibold mb-4 text-end">Lab</h1>
+            <p className="mb-4">
+              Aquí podrás ver todos los reportes de horas generados.
+            </p>
+
+            
+          </div>
+        </div>
+      </SidebarProvider>
+    </>
   );
 };
 
