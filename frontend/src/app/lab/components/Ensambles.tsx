@@ -27,10 +27,10 @@ const Ensambles = () => {
         </div>
       </div>
 
-      {/* Tarjetas de ensambles (tabla vertical) */}
-      <div className="space-y-4">
+      {/* Contenedor de tarjetas con scroll */}
+      <div className="max-h-[70vh] overflow-y-auto">
         {/* Tarjeta de ejemplo 1 */}
-        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-gray-600"><span className="font-medium">Opciones:</span> 4</p>
@@ -51,7 +51,7 @@ const Ensambles = () => {
         </div>
 
         {/* Tarjeta de ejemplo 2 */}
-        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-gray-600"><span className="font-medium">Opciones:</span> 5</p>
@@ -72,7 +72,7 @@ const Ensambles = () => {
         </div>
 
         {/* Tarjeta de ejemplo 3 */}
-        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-gray-600"><span className="font-medium">Opciones:</span> 6</p>
@@ -93,7 +93,7 @@ const Ensambles = () => {
         </div>
 
         {/* Tarjeta de ejemplo 4 */}
-        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-gray-600"><span className="font-medium">Opciones:</span> 7</p>
@@ -109,6 +109,48 @@ const Ensambles = () => {
               <p className="text-sm text-gray-600"><span className="font-medium">Remitente:</span> Remitente D</p>
               <p className="text-sm text-gray-600"><span className="font-medium">Fecha Estimada:</span> 2024-05-03</p>
               <p className="text-sm text-gray-600"><span className="font-medium">Recibido:</span> observations</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tarjeta de ejemplo 5 (nueva) */}
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm text-gray-600"><span className="font-medium">Opciones:</span> 8</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Consecutivos:</span> jkl012</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Grafo:</span> SX Protector</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Tipo de Ensamble:</span> 4</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600"><span className="font-medium">Cantidad:</span> 2</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Estado:</span> in progress</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Contrato:</span> 789</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Cliente:</span> Cliente E</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Remitente:</span> Remitente E</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Fecha Estimada:</span> 2024-06-01</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Recibido:</span> reprocessing</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tarjeta de ejemplo 6 (nueva) */}
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm text-gray-600"><span className="font-medium">Opciones:</span> 9</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Consecutivos:</span> mno345</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Grafo:</span> Bandejas</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Tipo de Ensamble:</span> 5</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600"><span className="font-medium">Cantidad:</span> 4</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Estado:</span> pending</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Contrato:</span> 101</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Cliente:</span> Cliente F</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Remitente:</span> Remitente F</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Fecha Estimada:</span> 2024-07-15</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Recibido:</span> to Satisfaction</p>
             </div>
           </div>
         </div>

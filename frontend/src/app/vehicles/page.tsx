@@ -3,16 +3,14 @@
 // pages/lab.tsx (o donde tengas tu componente Lab)
 import React, { useState } from 'react';
 import Header from '@/components/Header';
-import Reparaciones from '@/app/lab/components/Reparaciones'; // Importa el componente Reparaciones
-import Balance from '@/app/lab/components/Balance';
-import General from '@/app/lab/components/General';
-import Ensambles from '@/app/lab/components/Ensambles';
+import Soat from './components/Soat';
+import Documentos from './components/Documentos';
 
-type Section = 'reparaciones' | 'balance' | 'general' | 'ensambles';
+type Section = 'reparaciones' | 'balance' | 'general' | 'ensambles' | 'soat' | 'documentos';
 
-const Lab = () => {
+const Vehicles = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<Section>('reparaciones');
+  const [activeSection, setActiveSection] = useState<Section>('soat');
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -47,12 +45,12 @@ const Lab = () => {
           <ul>
             <li className="mb-2">
               <button
-                onClick={() => handleNavigation('reparaciones')}
+                onClick={() => handleNavigation('soat')}
                 className={`w-full text-left hover:text-gray-400 ${
-                  activeSection === 'reparaciones' ? 'font-bold' : ''
+                  activeSection === 'soat' ? 'font-bold' : ''
                 }`}
               >
-                Reparaciones
+                Soat
               </button>
             </li>
             <li className="mb-2">
@@ -62,27 +60,7 @@ const Lab = () => {
                   activeSection === 'balance' ? 'font-bold' : ''
                 }`}
               >
-                Balance
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                onClick={() => handleNavigation('general')}
-                className={`w-full text-left hover:text-gray-400 ${
-                  activeSection === 'general' ? 'font-bold' : ''
-                }`}
-              >
-                General
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                onClick={() => handleNavigation('ensambles')}
-                className={`w-full text-left hover:text-gray-400 ${
-                  activeSection === 'ensambles' ? 'font-bold' : ''
-                }`}
-              >
-                Ensambles
+                Documentos
               </button>
             </li>
           </ul>
@@ -90,26 +68,18 @@ const Lab = () => {
 
         {/* Contenido principal */}
         <div className="flex-1 p-4">
-          <h1 className="text-3xl font-semibold mb-4 text-center">Lab</h1>
+          <h1 className="text-3xl font-semibold mb-4 text-center">Vehicles</h1>
           <p className="mb-4 text-center">
-            Aquí podrás ver todos los reportes de horas generados.
+            Página de Vehiculos.
           </p>
 
           {/* Secciones de contenido */}
-          {activeSection === 'reparaciones' && (
-            <Reparaciones />
+          {activeSection === 'soat' && (
+            <Soat />
           )}
 
           {activeSection === 'balance' && (
-            <Balance />
-          )}
-
-          {activeSection === 'general' && (
-            <General /> 
-          )}
-
-          {activeSection === 'ensambles' && (
-            <Ensambles />
+            <Documentos />
           )}
         </div>
       </div>
@@ -117,4 +87,4 @@ const Lab = () => {
   );
 };
 
-export default Lab;
+export default Vehicles;
