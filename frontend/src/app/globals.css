@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body, :root {
+  height: 100%;
+}
+
 /* Puedes mantener los estilos globales aquí si es necesario */
 body {
   font-family: Arial, Helvetica, sans-serif;
