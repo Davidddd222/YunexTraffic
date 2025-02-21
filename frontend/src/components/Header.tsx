@@ -55,7 +55,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact">
+                  <Link href="/garantias">
                     <Button variant="link" className="text-base">Garantías</Button>
                   </Link>
                 </li>

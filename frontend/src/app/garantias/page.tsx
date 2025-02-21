@@ -3,14 +3,18 @@
 // pages/lab.tsx (o donde tengas tu componente Lab)
 import React, { useState } from 'react';
 import Header from '@/components/Header';
-import Soat from './components/Soat';
-import Documentos from './components/Documentos';
 
-type Section = 'reparaciones' | 'balance' | 'general' | 'ensambles' | 'soat' | 'documentos';
 
-const Vehicles = () => {
+import Archivos from '../garantias/components/Archivos';
+import General from '../garantias/components/General';
+import Balance from '../garantias/components/Balance';
+import Garantias from './components/Garantias';
+
+type Section = 'garantias' | 'general' | 'balance' | 'archivos';
+
+const Lab = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<Section>('soat');
+  const [activeSection, setActiveSection] = useState<Section>('garantias');
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -45,22 +49,42 @@ const Vehicles = () => {
           <ul>
             <li className="mb-2">
               <button
-                onClick={() => handleNavigation('soat')}
+                onClick={() => handleNavigation('garantias')}
                 className={`w-full text-left hover:text-gray-400 ${
-                  activeSection === 'soat' ? 'font-bold' : ''
+                  activeSection === 'garantias' ? 'font-bold' : ''
                 }`}
               >
-                Soat
+                Garantías
               </button>
             </li>
             <li className="mb-2">
               <button
-                onClick={() => handleNavigation('documentos')}
+                onClick={() => handleNavigation('general')}
                 className={`w-full text-left hover:text-gray-400 ${
-                  activeSection === 'documentos' ? 'font-bold' : ''
+                  activeSection === 'general' ? 'font-bold' : ''
                 }`}
               >
-                Documentos
+                General
+              </button>
+            </li>
+            <li className="mb-2">
+              <button
+                onClick={() => handleNavigation('balance')}
+                className={`w-full text-left hover:text-gray-400 ${
+                  activeSection === 'balance' ? 'font-bold' : ''
+                }`}
+              >
+                Balance
+              </button>
+            </li>
+            <li className="mb-2">
+              <button
+                onClick={() => handleNavigation('archivos')}
+                className={`w-full text-left hover:text-gray-400 ${
+                  activeSection === 'archivos' ? 'font-bold' : ''
+                }`}
+              >
+                Archivos 
               </button>
             </li>
           </ul>
@@ -68,18 +92,26 @@ const Vehicles = () => {
 
         {/* Contenido principal */}
         <div className="flex-1 p-4">
-          <h1 className="text-3xl font-semibold mb-4 text-center">Vehicles</h1>
+          <h1 className="text-3xl font-semibold mb-4 text-center">Lab</h1>
           <p className="mb-4 text-center">
-            Página de Vehiculos.
+            Aquí podrás ver todos los reportes de horas generados.
           </p>
 
           {/* Secciones de contenido */}
-          {activeSection === 'soat' && (
-            <Soat />
+          {activeSection === 'garantias' && (
+            <Garantias />
           )}
 
-          {activeSection === 'documentos' && (
-            <Documentos />
+          {activeSection === 'general' && (
+            <General />
+          )}
+
+          {activeSection === 'balance' && (
+            <Balance /> 
+          )}
+
+          {activeSection === 'archivos' && (
+            <Archivos />
           )}
         </div>
       </div>
@@ -87,4 +119,4 @@ const Vehicles = () => {
   );
 };
 
-export default Vehicles;
+export default Lab;
