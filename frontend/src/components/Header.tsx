@@ -40,12 +40,12 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact">
+                  <Link href="/ehs">
                     <Button variant="link" className="text-base">EHS</Button>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact">
+                  <Link href="/almacen">
                     <Button variant="link" className="text-base">Almacen</Button>
                   </Link>
                 </li>

@@ -8,11 +8,11 @@ import Header from '@/components/Header';
 import Archivos from '../garantias/components/Archivos';
 import General from '../garantias/components/General';
 import Balance from '../garantias/components/Balance';
-import Garantias from './components/Garantias';
+import Garantias from '../garantias/components/Garantias';
 
 type Section = 'garantias' | 'general' | 'balance' | 'archivos';
 
-const Lab = () => {
+const Ehs = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<Section>('garantias');
 
@@ -43,48 +43,48 @@ const Lab = () => {
         <div
           className={`fixed lg:relative lg:translate-x-0 transform ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gray-800 text-white h-screen p-4`}
+          } transition-transform duration-300 ease-in-out w-64 bg-gray-800 text-white h-screen p-4`}
         >
-          <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
+          <h2 className="text-xl font-semibold mb-4">Menú</h2>
           <ul>
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('garantias')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'garantias' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                className={`w-full text-left hover:text-gray-400 ${
+                  activeSection === 'garantias' ? 'font-bold' : ''
                 }`}
               >
-                Garantías
+                Por encontrar
               </button>
             </li>
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('general')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'general' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                className={`w-full text-left hover:text-gray-400 ${
+                  activeSection === 'general' ? 'font-bold' : ''
                 }`}
               >
-                General
+                Por encontrar 2
               </button>
             </li>
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('balance')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'balance' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                className={`w-full text-left hover:text-gray-400 ${
+                  activeSection === 'balance' ? 'font-bold' : ''
                 }`}
               >
-                Balance
+                Por encontrar 3
               </button>
             </li>
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('archivos')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'archivos' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                className={`w-full text-left hover:text-gray-400 ${
+                  activeSection === 'archivos' ? 'font-bold' : ''
                 }`}
               >
-                Archivos 
+                Poe encontrar 4 
               </button>
             </li>
           </ul>
@@ -92,9 +92,9 @@ const Lab = () => {
 
         {/* Contenido principal */}
         <div className="flex-1 p-4">
-          <h1 className="text-3xl font-semibold mb-4 text-center">Garantías</h1>
+          <h1 className="text-3xl font-semibold mb-4 text-center">Ehs</h1>
           <p className="mb-4 text-center">
-            Aquí podrás ver todas las garantias.
+            Aquí podrás ver todos los reportes.
           </p>
 
           {/* Secciones de contenido */}
@@ -119,4 +119,4 @@ const Lab = () => {
   );
 };
 
-export default Lab;
+export default Ehs;
