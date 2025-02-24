@@ -90,10 +90,7 @@ const Lab = () => {
 
         {/* Contenido principal */}
         <div className="flex-1 p-4">
-          <h1 className="text-3xl font-semibold mb-4 text-center">Lab</h1>
-          <p className="mb-4 text-center">
-            Aquí podrás ver todos los reportes de horas generados.
-          </p>
+          <h1 className="text-3xl font-semibold mb-4 text-center">Laboratorio</h1>
 
           {/* Secciones de contenido */}
           {activeSection === 'reparaciones' && (
