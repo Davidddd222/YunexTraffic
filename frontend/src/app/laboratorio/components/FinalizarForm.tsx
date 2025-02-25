@@ -9,9 +9,6 @@ const FinalizarForm = () => {
     estadoModulo: 'Reparado',
     descripcionReparacion: '',
     fechaFinalizacion: new Date().toISOString().split('T')[0], // Fecha actual
-    horasReales: '',
-    responsableFinal: '',
-    comentarios: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -92,50 +89,6 @@ const FinalizarForm = () => {
             onChange={handleChange}
             className="mt-1 p-2 w-full border border-gray-300 rounded-md"
             required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="horasReales" className="block text-sm font-medium text-gray-700">
-            Horas reales utilizadas
-          </label>
-          <input
-            type="number"
-            id="horasReales"
-            name="horasReales"
-            value={formData.horasReales}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="responsableFinal" className="block text-sm font-medium text-gray-700">
-            Responsable final
-          </label>
-          <input
-            type="text"
-            id="responsableFinal"
-            name="responsableFinal"
-            value={formData.responsableFinal}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="comentarios" className="block text-sm font-medium text-gray-700">
-            Comentarios adicionales
-          </label>
-          <textarea
-            id="comentarios"
-            name="comentarios"
-            value={formData.comentarios}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-            rows={4}
           />
         </div>
 

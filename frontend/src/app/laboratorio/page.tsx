@@ -3,10 +3,10 @@
 // pages/lab.tsx (o donde tengas tu componente Lab)
 import React, { useState } from 'react';
 import Header from '@/components/Header';
-import Reparaciones from '@/app/lab/components/Reparaciones'; // Importa el componente Reparaciones
-import Balance from '@/app/lab/components/Balance';
-import General from '@/app/lab/components/General';
-import Ensambles from '@/app/lab/components/Ensambles';
+import Reparaciones from '@/app/laboratorio/components/Reparaciones'; // Importa el componente Reparaciones
+import Balance from '@/app/laboratorio/components/Balance';
+import General from '@/app/laboratorio/components/General';
+import Ensambles from '@/app/laboratorio/components/Ensambles';
 
 type Section = 'reparaciones' | 'balance' | 'general' | 'ensambles';
 

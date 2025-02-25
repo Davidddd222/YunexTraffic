@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react'; 
 import EmpezarForm from './EmpezarForm';
 import FinalizarForm from './FinalizarForm';
+import axios from 'axios';
 
 const Reparaciones = () => {
+  const [reparaciones, setReparaciones] = useState([]);
   const [showEmpezar, setShowEmpezar] = useState(false);
   const [showFinalizar, setShowFinalizar] = useState(false);
 

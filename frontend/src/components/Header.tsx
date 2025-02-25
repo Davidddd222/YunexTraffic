@@ -35,7 +35,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/lab">
+                  <Link href="/laboratorio">
                     <Button variant="link" className="text-base">Laboratorio</Button>
                   </Link>
                 </li>

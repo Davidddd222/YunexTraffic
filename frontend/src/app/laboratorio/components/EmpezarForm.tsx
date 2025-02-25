@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify'; // Importa Toastify
+import 'react-toastify/dist/ReactToastify.css'; // Importa los estilos de Toastify
 
 // Definimos el tipo del formulario
 type FormData = {
@@ -32,10 +35,36 @@ const EmpezarForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí puedes enviar los datos al backend o almacenarlos
-    console.log(formData);
+
+    try {
+      // Enviar los datos al backend
+      const response = await axios.post('http://localhost:5000/api/laboratorio/reparaciones', formData);
+
+      // Si la solicitud es exitosa
+      console.log('Reparación iniciada:', response.data);
+
+      // Mostrar la notificación de éxito
+      toast.success('Reparación registrada correctamente.');
+
+      // Limpiar el formulario
+      setFormData({
+        equipoID: '',
+        tecnico: '',
+        fechaInicio: new Date().toISOString().split('T')[0],
+        descripcion: '',
+        prioridad: 'Baja',
+        horasEstimadas: '',
+        estado: 'En revisión',
+      });
+    } catch (error) {
+      // Si ocurre un error
+      console.error('Error al registrar la reparación:', error);
+
+      // Mostrar la notificación de error
+      toast.error('Hubo un problema al registrar la reparación. Intenta nuevamente.');
+    }
   };
 
   return (
@@ -164,6 +193,11 @@ const EmpezarForm = () => {
           Empezar Reparación
         </button>
       </form>
+
+      {/* Aquí se coloca el ToastContainer para que las notificaciones se muestren */}
+      <ToastContainer
+      autoClose={3000} // Duración de la notificación
+      />
     </div>
   );
 };
