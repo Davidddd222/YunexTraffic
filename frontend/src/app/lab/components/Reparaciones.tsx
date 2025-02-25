@@ -1,11 +1,25 @@
-// components/Reparaciones.tsx
-import React, { useState } from 'react'; 
+import React, { useState, useRef } from 'react'; 
 import EmpezarForm from './EmpezarForm';
 import FinalizarForm from './FinalizarForm';
 
 const Reparaciones = () => {
   const [showEmpezar, setShowEmpezar] = useState(false);
   const [showFinalizar, setShowFinalizar] = useState(false);
+
+  // Referencias para los modales
+  const modalEmpezarRef = useRef<HTMLDivElement>(null);
+  const modalFinalizarRef = useRef<HTMLDivElement>(null);
+
+  // Función para manejar el clic fuera del modal
+  const handleClickOutside = (event: React.MouseEvent) => {
+    if (
+      (modalEmpezarRef.current && !modalEmpezarRef.current.contains(event.target as Node)) &&
+      (modalFinalizarRef.current && !modalFinalizarRef.current.contains(event.target as Node))
+    ) {
+      setShowEmpezar(false);
+      setShowFinalizar(false);
+    }
+  };
 
   const handleEmpezarClick = () => {
     setShowEmpezar(true);
@@ -20,15 +34,6 @@ const Reparaciones = () => {
   const handleCloseModal = () => {
     setShowEmpezar(false);
     setShowFinalizar(false);
-  };
-
-  // Función para cerrar el modal al hacer clic fuera de él
-  const handleClickOutside = (e: React.MouseEvent) => {
-    const modalContent = e.target as HTMLElement;
-    if (modalContent && modalContent.classList.contains('modal-content')) {
-      return; // Si el clic es dentro del modal, no hacer nada
-    }
-    handleCloseModal(); // Si el clic es fuera del modal, cerrar
   };
 
   return (
@@ -60,10 +65,14 @@ const Reparaciones = () => {
       {/* Modal flotante para "Empezar" */}
       {showEmpezar && (
         <div 
-          className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50" 
-          onClick={handleClickOutside}
+          className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
+          onClick={handleClickOutside} // Detecta clics fuera del modal
         >
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-h-screen overflow-auto modal-content">
+          <div
+            ref={modalEmpezarRef}
+            className="bg-white p-6 rounded-lg shadow-lg w-96 max-h-screen overflow-auto modal-content"
+            onClick={(e) => e.stopPropagation()} // Evita que el clic dentro del modal cierre el modal
+          >
             <button
               onClick={handleCloseModal}
               className="absolute top-2 right-2 text-xl text-gray-500"
@@ -74,7 +83,7 @@ const Reparaciones = () => {
             <EmpezarForm />
             <button
               onClick={handleCloseModal}
-              className="mt-4 px-4 py-2 bg-gray-300 text-white rounded-md hover:bg-gray-400"
+              className="mt-4 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
             >
               Cancelar
             </button>
@@ -86,9 +95,13 @@ const Reparaciones = () => {
       {showFinalizar && (
         <div 
           className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
-          onClick={handleClickOutside}
+          onClick={handleClickOutside} // Detecta clics fuera del modal
         >
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-h-screen overflow-auto modal-content">
+          <div
+            ref={modalFinalizarRef}
+            className="bg-white p-6 rounded-lg shadow-lg w-96 max-h-screen overflow-auto modal-content"
+            onClick={(e) => e.stopPropagation()} // Evita que el clic dentro del modal cierre el modal
+          >
             <button
               onClick={handleCloseModal}
               className="absolute top-2 right-2 text-xl text-gray-500"
@@ -99,7 +112,7 @@ const Reparaciones = () => {
             <FinalizarForm />
             <button
               onClick={handleCloseModal}
-              className="mt-4 px-4 py-2 bg-gray-300 text-white rounded-md hover:bg-gray-400"
+              className="mt-4 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
             >
               Cancelar
             </button>

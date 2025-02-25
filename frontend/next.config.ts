@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,  // Activar el modo estricto de React (opcional)
 };
 
 export default nextConfig;

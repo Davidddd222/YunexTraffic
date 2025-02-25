@@ -49,7 +49,7 @@ const Lab = () => {
               <button
                 onClick={() => handleNavigation('reparaciones')}
                 className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'reparaciones' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                  activeSection === 'reparaciones' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
                 }`}
               >
                 Reparaciones
@@ -59,7 +59,7 @@ const Lab = () => {
               <button
                 onClick={() => handleNavigation('balance')}
                 className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'balance' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                  activeSection === 'balance' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
                 }`}
               >
                 Balance
@@ -69,7 +69,7 @@ const Lab = () => {
               <button
                 onClick={() => handleNavigation('general')}
                 className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'general' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                  activeSection === 'general' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
                 }`}
               >
                 General
@@ -79,7 +79,7 @@ const Lab = () => {
               <button
                 onClick={() => handleNavigation('ensambles')}
                 className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'ensambles' ? 'font-bold border rounded-sm bg-blue-600' : ''
+                  activeSection === 'ensambles' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
                 }`}
               >
                 Ensambles
