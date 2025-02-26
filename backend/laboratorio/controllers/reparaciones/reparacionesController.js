@@ -27,19 +27,28 @@ const crear = async (req, res) => {
 // Función para finalizar una reparación
 const finalizar = async (req, res) => {
   try {
-    const { id } = req.params;
-    const reparacion = await Reparacion.findById(id);
+    const { id } = req.params;  // El ID del equipo que se pasa en la URL
+    const { estado, descripcion } = req.body;  // Recibimos el estado (Reparado o Irreparable) y la descripción del cuerpo de la solicitud
+
+    // Buscar la reparación por equipoID (en lugar de byId para que coincida con la estructura de tu modelo)
+    const reparacion = await Reparacion.findOne({ equipoID: id });
 
     if (!reparacion) {
       return res.status(404).json({ message: 'Reparación no encontrada' });
     }
 
-    reparacion.estado = 'Finalizada'; // Cambiar estado a 'Finalizada'
+    // Actualizamos los campos de estado, descripción y fecha de finalización
+    reparacion.estado = estado;
+    reparacion.descripcion = descripcion;
+    reparacion.fechaFinalizacion = new Date();  // La fecha actual de finalización
+
+    // Guardamos la reparación actualizada
     await reparacion.save();
-    res.status(200).json({ message: 'Reparación finalizada' });
+
+    return res.status(200).json({ message: 'Reparación finalizada correctamente', reparacion });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al finalizar la reparación' });
+    return res.status(500).json({ message: 'Error al finalizar la reparación' });
   }
 };
 
