@@ -1,12 +1,16 @@
-// routes/reparaciones/reparacionesRoutes.js
+// backend/laboratorio/routes/reparaciones/reparacionesRoutes.js
 const express = require('express');
 const router = express.Router();
 const reparacionesController = require('../../controllers/reparaciones/reparacionesController');
+const { finalizarReparacion } = require('../../controllers/reparaciones/reparacionesController');
 
-// Crear una nueva reparación
+
+// Obtener una reparación por equipoID (en lugar de _id)
+router.get('/equipo/:equipoID', reparacionesController.obtenerPorId);
+
+// Otras rutas para crear y finalizar reparaciones...
 router.post('/', reparacionesController.crear);
 
-// Finalizar una reparación (aquí usamos PUT)
-router.put('/finalizar/:id', reparacionesController.finalizar);  // Cambiado a PUT
+router.put('/finalizar/:equipoID', finalizarReparacion);
 
 module.exports = router;

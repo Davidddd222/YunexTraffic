@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify'; // Importa Toastify
-import 'react-toastify/dist/ReactToastify.css'; // Importa los estilos de Toastify
+import { useForm } from 'react-hook-form';  // Importamos React Hook Form
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// Definimos el tipo del formulario
 type FormData = {
   equipoID: string;
   estadoModulo: string;
@@ -12,44 +12,35 @@ type FormData = {
 };
 
 const FinalizarForm = () => {
-  // Definir el estado del formulario
-  const [formData, setFormData] = useState<FormData>({
-    equipoID: '',
-    estadoModulo: 'Reparado',  // Estado inicial puede ser "Reparado" por defecto
-    descripcion: '',
-    fechaFinalizacion: new Date().toISOString().split('T')[0], // Fecha actual
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      equipoID: '',
+      estadoModulo: 'Reparado',
+      descripcion: '',
+      fechaFinalizacion: new Date().toISOString().split('T')[0],
+    },
   });
 
-  const [repairData, setRepairData] = useState<any>(null); // Para almacenar los datos de la reparación que se va a finalizar
-  const [error, setError] = useState<string | null>(null); // Para manejar posibles errores
+  const [repairData, setRepairData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // Manejar cambios en los campos del formulario
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  // Función para obtener los detalles de la reparación al ingresar el ID del equipo
   const handleEquipoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      equipoID: value,
-    }));
+    const equipoID = e.target.value;
+    setValue('equipoID', equipoID); // Set equipoID in form
 
-    if (value) {
+    if (equipoID) {
       try {
-        // Solicitar los datos de la reparación con el equipoID
-        const response = await axios.get(`http://localhost:5000/api/laboratorio/reparaciones/${value}`);
+        const response = await axios.get(`http://localhost:5000/api/laboratorio/reparaciones/equipo/${equipoID}`);
+        
+        // Si la respuesta contiene datos, actualizamos el formulario
         if (response.data) {
-          setRepairData(response.data); // Guardamos los datos de la reparación
-          setFormData(prevState => ({
-            ...prevState,
-            descripcion: response.data.descripcion || '', // Rellenar la descripción si hay alguna
-          }));
+          setRepairData(response.data);
+          setValue('descripcion', response.data.descripcion || '');  // Set existing description
         }
       } catch (err) {
         setError('Error al cargar los datos de la reparación.');
@@ -58,35 +49,30 @@ const FinalizarForm = () => {
     }
   };
 
-  // Función para enviar la solicitud al backend
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.equipoID) {
-      toast.error('Por favor, ingrese el ID del equipo.');
-      return;
-    }
-
+  const onSubmit = async (data: FormData) => {
     try {
-      // Cambiar de POST a PUT porque es una actualización
+      // Realizamos la solicitud PUT para finalizar la reparación
       const response = await axios.put(
-        `http://localhost:5000/api/laboratorio/reparaciones/finalizar/${formData.equipoID}`,
-        formData
+        `http://localhost:5000/api/laboratorio/reparaciones/finalizar/${data.equipoID}`,
+        {
+          estadoModulo: data.estadoModulo,
+          descripcion: data.descripcion,
+          fechaFinalizacion: data.fechaFinalizacion,
+        }
       );
 
-      // Si la solicitud es exitosa
       if (response.data) {
         toast.success('Reparación finalizada correctamente.');
-        setFormData({
-          equipoID: '',
-          estadoModulo: 'Reparado',
-          descripcion: '',
-          fechaFinalizacion: new Date().toISOString().split('T')[0],
-        });
+
+        // Limpiar formulario
+        setValue('equipoID', '');
+        setValue('estadoModulo', 'Reparado');
+        setValue('descripcion', '');
+        setValue('fechaFinalizacion', new Date().toISOString().split('T')[0]);
+        setRepairData(null);  // Limpiar los datos de la reparación
       }
     } catch (error) {
-      // Si ocurre un error
-      toast.error('Hubo un problema al finalizar la reparación. Intenta nuevamente.');
+      toast.error('Hubo un problema al finalizar la reparación.');
       console.error('Error al finalizar la reparación:', error);
     }
   };
@@ -94,7 +80,7 @@ const FinalizarForm = () => {
   return (
     <div className="p-4 bg-white shadow-md rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Finalizar Reparación</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label htmlFor="equipoID" className="block text-sm font-medium text-gray-700">
             ID del equipo
@@ -102,12 +88,11 @@ const FinalizarForm = () => {
           <input
             type="text"
             id="equipoID"
-            name="equipoID"
-            value={formData.equipoID}
-            onChange={handleEquipoChange} // Maneja el cambio de equipoID
+            {...register('equipoID', { required: 'Este campo es obligatorio' })}
+            onChange={handleEquipoChange}  // Cargar datos de reparación cuando el ID cambia
             className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-            required
           />
+          {errors.equipoID && <p className="text-red-500 text-sm">{errors.equipoID.message}</p>}
         </div>
 
         {repairData && (
@@ -118,11 +103,8 @@ const FinalizarForm = () => {
               </label>
               <select
                 id="estadoModulo"
-                name="estadoModulo"
-                value={formData.estadoModulo}
-                onChange={handleChange}
+                {...register('estadoModulo')}
                 className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-                required
               >
                 <option value="Reparado">Reparado</option>
                 <option value="Irreparable">Irreparable</option>
@@ -135,13 +117,11 @@ const FinalizarForm = () => {
               </label>
               <textarea
                 id="descripcion"
-                name="descripcion"
-                value={formData.descripcion}
-                onChange={handleChange}
+                {...register('descripcion', { required: 'Este campo es obligatorio' })}
                 className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                 rows={4}
-                required
               />
+              {errors.descripcion && <p className="text-red-500 text-sm">{errors.descripcion.message}</p>}
             </div>
 
             <div className="mb-4">
@@ -151,12 +131,10 @@ const FinalizarForm = () => {
               <input
                 type="date"
                 id="fechaFinalizacion"
-                name="fechaFinalizacion"
-                value={formData.fechaFinalizacion}
-                onChange={handleChange}
+                {...register('fechaFinalizacion', { required: 'Este campo es obligatorio' })}
                 className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-                required
               />
+              {errors.fechaFinalizacion && <p className="text-red-500 text-sm">{errors.fechaFinalizacion.message}</p>}
             </div>
 
             <button

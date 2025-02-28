@@ -1,4 +1,3 @@
-// backend/laboratorio/models/reparaciones/reparacionModel.js
 const mongoose = require('mongoose');
 
 const reparacionSchema = new mongoose.Schema({
@@ -34,7 +33,7 @@ const reparacionSchema = new mongoose.Schema({
   },
   fechaFinalizacion: { 
     type: Date 
-  } // Este campo se rellenará cuando la reparación se finalice
+  }
 });
 
 // Cambiar el nombre de la colección a 'reparacions'
